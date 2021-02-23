@@ -4,8 +4,9 @@ import {Vehicle} from '../../models/vehicle.model';
 import {DataService} from '../../services/data.service';
 import {NavigationExtras, Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
-import {Subscription} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {NavigateService} from '../../services/navigate.service';
+import {mergeMap} from 'rxjs/operators';
 
 @Component({
   selector: 'ff-galaxy',
@@ -211,13 +212,13 @@ export class GalaxyComponent implements OnInit, OnDestroy {
     let response = {};
 
     if (this.planetSelectedCount < 4 || this.planetAssignedVehicles < 4) {
-      this.toastr.error('Please choose 4 planets & assign appropraite vehicles to them to proceed.');
+      this.toastr.error('Please choose 4 planets & assign appropriate vehicles to them to proceed.');
       return false;
     } else if (this.planetSelectedCount === 4 && this.planetAssignedVehicles === 4) {
+      let findFalcones: Observable<any>;
 
-      this.dataService.getToken().subscribe(
-        token => {
-
+      findFalcones = this.dataService.getToken().pipe(
+        mergeMap((token: any): any => {
           const body = {};
           body['token'] = token;
           body['planet_names'] = [];
@@ -231,50 +232,49 @@ export class GalaxyComponent implements OnInit, OnDestroy {
               }
             }
           });
+          this.dataService.findFalcone(body);
+        })
+    );
+      findFalcones.subscribe(res => {
 
-          this.dataService.findFalcone(body).subscribe(
-            response => {
-              // console.log(response);
-            });
-        }, error => {
+      }, error => {
 
-          this.toastr.error('No token available. Mock Implementation kicks in.');
+        this.toastr.error('No token available. Mock Implementation kicks in.');
 
-          const randomPlanetIndex = Math.floor(Math.random() * (6 - 0)) + 0;
-          const winnerPlanet = this.planets[randomPlanetIndex];
+        const randomPlanetIndex = Math.floor(Math.random() * (6 - 0)) + 0;
+        const winnerPlanet = this.planets[randomPlanetIndex];
 
-          let planetFound = false;
+        let planetFound = false;
 
-          this.planets.forEach(planet => {
-            if (planet.isSelected) {
-              if (planet.name === winnerPlanet.name) {
-                planetFound = true;
-              }
+        this.planets.forEach(planet => {
+          if (planet.isSelected) {
+            if (planet.name === winnerPlanet.name) {
+              planetFound = true;
             }
-          });
-
-          if (planetFound) {
-
-            response = {
-              'planet_name': winnerPlanet.name,
-              'time_taken': this.timeToTravel,
-              'status': 'success'
-            };
-          } else {
-
-            response = {
-              'status': 'failure'
-            };
           }
-
-          const navigationExtras: NavigationExtras = {
-            queryParams: {
-              response: JSON.stringify(response)
-            }
-          };
-          this.router.navigate(['result'], navigationExtras);
-
         });
+
+        if (planetFound) {
+
+          response = {
+            'planet_name': winnerPlanet.name,
+            'time_taken': this.timeToTravel,
+            'status': 'success'
+          };
+        } else {
+
+          response = {
+            'status': 'failure'
+          };
+        }
+
+        const navigationExtras: NavigationExtras = {
+          queryParams: {
+            response: JSON.stringify(response)
+          }
+        };
+        this.router.navigate(['result'], navigationExtras);
+      });
     }
   }
 
