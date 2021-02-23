@@ -16,7 +16,6 @@ export class ResultComponent implements OnInit {
 
     this.route.queryParams.subscribe(result => {
       this.result = JSON.parse(result.response);
-      console.log(this.result);
     });
   }
 
