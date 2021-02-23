@@ -12,7 +12,7 @@
 
   <section class="galaxy__planetsArea">
     <section class="galaxy__planetsArea__circle-container">
-      <section class="galaxy__planetsArea__circle-container__time">
+      <section *ngIf="planetSelectedCount === 4" class="galaxy__planetsArea__circle-container__time">
         <p>Time taken</p>
         <p>{{timeToTravel}} hrs</p>
       </section>

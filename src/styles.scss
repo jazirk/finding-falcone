@@ -4,6 +4,7 @@
 @import "assets/theme/resource/mixins";
 @import "assets/theme/reset";
 @import "assets/theme/fonts/customFonts.css";
+@import '~ngx-toastr/toastr.css';
 
 html, body {
   height: 100%;

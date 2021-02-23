@@ -238,7 +238,7 @@ export class GalaxyComponent implements OnInit, OnDestroy {
             });
         }, error => {
 
-          console.log('No token available. Mock Implementation kicks in.');
+          this.toastr.error('No token available. Mock Implementation kicks in.');
 
           const randomPlanetIndex = Math.floor(Math.random() * (6 - 0)) + 0;
           const winnerPlanet = this.planets[randomPlanetIndex];
