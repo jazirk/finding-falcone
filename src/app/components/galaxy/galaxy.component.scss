@@ -1,0 +1,295 @@
+@import "src/assets/theme/resource/mixins";
+
+@mixin on-circle($item-count, $circle-size, $item-size) {
+  //position: relative;
+  width: $circle-size;
+  height: $circle-size;
+  padding: 0;
+  border-radius: 50%;
+  list-style: none;
+
+  > div {
+    @include flex-box(nowrap, center, center);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: $item-size;
+    height: $item-size;
+    margin: -($item-size / 2);
+
+    $angle: (360 / $item-count);
+    $rot: 0;
+
+    @for $i from 1 through $item-count {
+      &:nth-of-type(#{$i}) {
+        transform: rotate($rot * 1deg) translate($circle-size / 2) rotate($rot * -1deg);
+      }
+
+      $rot: $rot + $angle;
+    }
+  }
+}
+
+main {
+  width: 100%;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  height: 100vh;
+  overflow: auto;
+  color: $pc-color-white;
+
+  .galaxy__header {
+    @include flex-box(nowrap, center, center);
+    flex-direction: column;
+    height: 90%;
+    margin-top: 3rem;
+    width: 100%;
+    gap: 2rem;
+
+    p {
+      margin: 0.25rem 0rem;
+    }
+
+    &-planet, &-vehicle {
+      @include flex-box(nowrap, center, center);
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+
+  h1 {
+    font-size: 3rem;
+    margin: 0rem;
+  }
+
+  h2 {
+    margin-bottom: 0rem;
+  }
+
+  .galaxy__planetsArea {
+    position: relative;
+
+    &__circle-container {
+      @include on-circle($item-count: 6, $circle-size: 25em, $item-size: 10em);
+      margin: 5em auto 0;
+
+      &__time {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        font-size: $pc-font-20px;
+
+        p:first-of-type {
+          font-size: $pc-font-14px;
+        }
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+        transition: .15s;
+        width: 70%;
+        height: 60%;
+      }
+    }
+
+    .galaxy__planetsArea__planetsSection {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+
+      &-planet {
+        //margin: 1rem;
+        //margin-left: 0rem;
+        cursor: pointer;
+        border-radius: 50%;
+        //position: relative;
+
+        img {
+          &.chosenVehicle {
+            width: 50px;
+            height: 50px;
+
+            position: absolute;
+            top: 0rem;
+            left: 0px;
+
+            border: none;
+            padding: 0.25rem;
+          }
+
+          &:hover {
+            transform: scale(1.1);
+            transition: 0.2s ease-in;
+          }
+        }
+
+        &.isSelected {
+          -webkit-box-shadow: 2px 4px 20px 3px rgba(237, 181, 12, 1);
+          -moz-box-shadow: 2px 4px 20px 3px rgba(237, 181, 12, 1);
+          box-shadow: 2px 4px 20px 3px rgba(237, 181, 12, 1);
+          //transform: scale(1.3);
+          //transition: 0.2s ease-in;
+        }
+      }
+    }
+  }
+
+  .galaxy__vehiclesArea {
+    position: relative;
+
+    &__vehiclesSection {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      height: 90%;
+      gap: 0.5rem;
+
+      &-vehicle {
+        display: flex;
+        gap: 2px;
+
+        &-details {
+          @include flex-box(wrap, flex-start, center);
+          flex-direction: column;
+          color: $pc-color-white;
+          margin-right: 1%;
+        }
+
+        &-name {
+          font-size: $pc-font-14px;
+          font-weight: 600;
+        }
+
+        &-sub {
+          font-size: $pc-font-10px;
+        }
+
+        img {
+          height: 150px;
+          width: 175px;
+        }
+
+        &.notAvailable {
+          opacity: .5;
+          cursor: not-allowed;
+        }
+
+        .selectedText {
+          //position: absolute;
+          //top: 0rem;
+          //left: 0rem;
+
+          display: block;
+          width: 100%;
+
+          background-color: #666;
+
+          padding: .5rem 0rem;
+
+          text-align: center;
+          color: #FFF;
+        }
+      }
+
+      img {
+        width: 4rem;
+        height: auto;
+        object-fit: contain;
+        max-height: 250px;
+        padding: .5rem;
+      }
+
+      &__button {
+        width: 10rem;
+        padding: 0.5rem;
+        border-radius: .5rem;
+        color: #fff;
+        cursor: pointer;
+        background-color: #601b1b;
+        font-size: $pc-font-12px;
+        text-transform: capitalize;
+        word-spacing: .25rem;
+        position: absolute;
+        bottom: 10%;
+        right: 0;
+      }
+    }
+  }
+
+  buttonArea {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+}
+
+
+svg {
+  width: 2rem;
+  display: block;
+}
+
+.path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 0;
+
+  &.circle {
+    -webkit-animation: dash .9s ease-in-out;
+    animation: dash .9s ease-in-out;
+  }
+
+  &.line {
+    stroke-dashoffset: 1000;
+    -webkit-animation: dash .9s .35s ease-in-out forwards;
+    animation: dash .9s .35s ease-in-out forwards;
+  }
+
+  &.check {
+    stroke-dashoffset: -100;
+    -webkit-animation: dash-check .9s .35s ease-in-out forwards;
+    animation: dash-check .9s .35s ease-in-out forwards;
+  }
+}
+
+@-webkit-keyframes dash {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@-webkit-keyframes dash-check {
+  0% {
+    stroke-dashoffset: -100;
+  }
+  100% {
+    stroke-dashoffset: 900;
+  }
+}
+
+@keyframes dash-check {
+  0% {
+    stroke-dashoffset: -100;
+  }
+  100% {
+    stroke-dashoffset: 900;
+  }
+}
+

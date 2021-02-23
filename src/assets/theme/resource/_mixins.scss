@@ -1,0 +1,143 @@
+@import "variable";
+
+// Mixins - Utilty
+@mixin flex-box($wrap: nowrap,$align: stretch,$justify-content: flex-start) {
+  display: flex;
+  flex-wrap: $wrap;
+  align-items: $align;
+  justify-content: $justify-content;
+}
+
+@mixin box-model($width,$min-width,$max-width,$height,$min-height,$max-height,$padding,$margin,$box-shadow) {
+  box-sizing: border-box;
+  width: $width;
+  min-width: $min-width;
+  max-width: $max-width;
+  height: $height;
+  min-height: $min-height;
+  max-height: $max-height;
+  padding: $padding;
+  margin: $margin;
+  box-shadow: $box-shadow;
+}
+
+
+@mixin box-model-slim($width,$height) {
+  width: $width;
+  height: $height;
+  box-sizing: border-box;
+}
+
+
+// This mixin will be responsible for the screen size 768px amd above
+@mixin public-desktop {
+  @media screen and (min-width: $pc-public-desktop-start) {
+    @content;
+  }
+}
+
+@mixin public-desktop-to-tab {
+  @media screen and (max-width: $pc-public-desktop-start) {
+    @content;
+  }
+}
+
+@mixin public-tablet-landscape {
+  @media screen and (min-width: $pc-public-desktop-start) {
+    @content;
+  }
+}
+
+@mixin public-tablet {
+  @media screen and (min-width: $pc-public-tablet-start) {
+    @content;
+  }
+}
+
+@mixin main-desktop {
+  @media screen and (min-width: $pc-desktop-start) {
+    @content;
+  }
+}
+
+@mixin main-desktop-mid {
+  @media screen and (min-width: $pc-desktop-start) and (max-width: $pc-desktop-mid) {
+    @content;
+  }
+}
+
+@mixin main-mobile-mid {
+  @media screen and (min-width: $pc-mobile-mid) {
+    @content;
+  }
+}
+@mixin main-desktop-xl {
+  @media screen and (min-width: $pc-desktop-mid) and (max-width: $pc-desktop-end) {
+    @content;
+  }
+}
+
+@mixin main-desktop-xl-beyond {
+  @media screen and (min-width: $pc-desktop-end) {
+    @content;
+  }
+}
+
+@mixin main-desktop-large {
+  @media screen and (min-width: $pc-desktop-large) {
+    @content;
+  }
+}
+
+@mixin main-desktop-xx {
+  @media screen and (min-width: $pc-desktop-mid) {
+    @content;
+  }
+}
+
+@mixin main-tablet {
+  @media screen and (min-width: $pc-tablet-start) {
+    @content;
+  }
+}
+
+@mixin main-mobile {
+  @media screen and (max-width: $pc-mobile-end) {
+    @content;
+  }
+}
+
+@mixin main-only-mobile {
+  @media screen and (max-width: $pc-tablet-end) {
+    @content;
+  }
+
+}
+
+@mixin main-desktop-to-tab {
+  @media screen and (max-width: $pc-desktop-start) {
+    @content;
+  }
+}
+
+@mixin tablet-and-mobile {
+  @media screen and (max-width: $pc-main-tablet-end) {
+    @content;
+  }
+}
+
+@mixin scroll-bar {
+  &::-webkit-scrollbar {
+    width: 12px;
+    background: $pc-color-fog-grey;
+   border-radius: 5px;
+  }
+  &::-webkit-scrollbar-track-piece {
+    background: $pc-color-fog-grey;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #8b8585;
+    border: 2px solid $pc-color-grey-light;
+    border-radius: 5px;
+  }
+}

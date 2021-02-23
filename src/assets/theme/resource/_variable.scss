@@ -1,0 +1,148 @@
+// Reset CSS variables
+// We will be coding all the font sizes and the color values accorind to the theme and we will have to reference this value only.
+
+$pc-base-font-size: 16px;
+$pc-base-line-height: 25px;
+
+// this is used for the calculations below as we cannot use the above base font since it has px appended to it.
+$pc-base-font-value: 16;
+
+// Responsive break points
+// These must be the starting point of the responsive screen so the min width as we are coding for
+// 300px to 480px since we are following mobile responsive screen
+$pc-mobile-end: 767px;
+$pc-mobile-mid: 660px;
+$pc-tablet-start: 768px;
+$pc-desktop-start: 1280px;
+$pc-main-tablet-end: 1279px;
+$pc-desktop-large: 1600px;
+$pc-desktop-mid: 1440px;
+$pc-desktop-end: 1920px;
+$pc-tablet-end: 480px;
+
+$pc-public-desktop-start: 1024px;
+$pc-public-tablet-start: 768px;
+
+$pc-mobile-padding: 0 15px;
+$pc-tab-desktop-padding: 0 30px;
+
+$pc-public-mobile-padding: 0 20px;
+$pc-public-tab-desktop-padding: 0 60px;
+
+$viewports: (360, 768, 1280, 1920);
+
+// Basic Font sizes
+$pc-font-8px: #{8/$pc-base-font-value}em;
+$pc-font-10px: #{10/$pc-base-font-value}em;
+$pc-font-12px: #{12/$pc-base-font-value}em;
+$pc-font-14px: #{14/$pc-base-font-value}em;
+$pc-font-16px: #{16/$pc-base-font-value}em;
+$pc-font-18px: #{18/$pc-base-font-value}em;
+$pc-font-20px: #{20/$pc-base-font-value}em;
+$pc-font-22px: #{22/$pc-base-font-value}em;
+$pc-font-24px: #{24/$pc-base-font-value}em;
+$pc-font-28px: #{28/$pc-base-font-value}em;
+$pc-font-30px: #{30/$pc-base-font-value}em;
+$pc-font-32px: #{32/$pc-base-font-value}em;
+$pc-font-34px: #{34/$pc-base-font-value}em;
+$pc-font-36px: #{36/$pc-base-font-value}em;
+$pc-font-72px: #{72/$pc-base-font-value}em;
+$pc-font-48px: #{48/$pc-base-font-value}em;
+
+$pc-rem-font-8px: #{8/$pc-base-font-value}rem;
+$pc-rem-font-10px: #{10/$pc-base-font-value}rem;
+$pc-rem-font-12px: #{12/$pc-base-font-value}rem;
+$pc-rem-font-14px: #{14/$pc-base-font-value}rem;
+$pc-rem-font-16px: #{16/$pc-base-font-value}rem;
+$pc-rem-font-18px: #{18/$pc-base-font-value}rem;
+$pc-rem-font-20px: #{20/$pc-base-font-value}rem;
+$pc-rem-font-22px: #{22/$pc-base-font-value}rem;
+$pc-rem-font-24px: #{24/$pc-base-font-value}rem;
+$pc-rem-font-28px: #{28/$pc-base-font-value}rem;
+$pc-rem-font-32px: #{32/$pc-base-font-value}rem;
+$pc-rem-font-35px: #{35/$pc-base-font-value}rem;
+$pc-rem-font-72px: #{72/$pc-base-font-value}rem;
+$pc-rem-font-48px: #{48/$pc-base-font-value}rem;
+
+//Button sizes
+$max-button-height: 48px;
+$max-button-width: 136px;
+
+
+// form value font size and title/label font size
+$pc-value-font-size-16: 16px;
+$pc-title-font-size-16: 16px;
+$pc-title-font-size-hover-14: 14px;
+$pc-field-height-64: 64px;
+$pc-field-height-error-96: 96px;
+
+// application colors
+$pc-color-comp-blue:#0563fa;
+$pc-color-very-dark-blue: #0F2583;
+$pc-color-mid-blue: #2477FB;
+$pc-color-lighter-blue: #8ce0cf;
+$pc-color-dark-blue: #17305e;
+$pc-color-advisor-blue: #29337b;
+$pc-color-light-blue: #96D8F3;
+$pc-color-mild-blue: #e8eef4;
+$pc-blue-mid-blue-2: #2196F3;
+$pc-color-mid-white: #d9e3ec;
+$pc-color-white: #FFFFFF;
+$pc-color-mint: #8BE1CF;
+$pc-color-green: #37C57F;
+$pc-color-mid-grey: #999999;
+$pc-color-yellow: #ffc700;
+$pc-color-mid-yellow: #ffc800;
+$pc-color-pale-grey: #f3f6f9;
+$pc-color-light-grey: #b2b3b3;
+$pc-color-black: #101820;
+$pc-color-blue: #0f2682;
+$pc-color-purple-brown: #231f20;
+$pc-color-coral: #Fc5147;
+$pc-color-comp-coral:#e20f03;
+$pc-color-red: #e84c3b;
+$pc-color-light-coral: #f0554c;
+$pc-color-mild-coral: #ed5851;
+$pc-color-near-blue: #2478fa;
+$pc-color-bluish-white: #dae4ed;
+$pc-color-royal-blue: #2b7af9;
+$pc-color-fog-grey: #ffffff;
+$pc-color-gray: #dddddd;
+$pc-color-grey: #777676;
+$pc-color-pale-blue-grey: #ddecfd;
+$pc-color-dark-grey: #585353;
+$pc-color-solitude: #e2e3e4;
+$pc-color-pattens-blue: #d9e3e7;
+$pc-color-pitch-black: #000000;
+$pc-color-very-light-grey: #d0d4e5;
+$pc-color-cloudy-grey: #dadeeb;
+$pc-blue-form: #5E9BE5;
+$pc-color-scarlet: #f02f17;
+$pc-light-pale-white-color: #edeef0;
+$pc-invalid-field-color: #ec9494;
+$pc-color-pink: #d6443c;
+$pc-color-blackish-gray: #666666;
+$pc-color-grey-mid: #aaaaaa;
+$pc-color-pale-white : #f4f4f4;
+$pc-pill-box-shadow : #071547;
+$pc-pill-initials : #66bdff;
+$pc-color-grey-light: #f1f1f1;
+$pc-color-grey-lighter: #e4e4e4;
+$pc-color-hover-grey: #cfcfcf;
+$pc-color-icon-grey: #aab9c7;
+$pc-color-nobel: #989898;
+$pc-pill-box-shadow-light: #22262f;
+$pc-color-disable-grey: #f6f6f6;
+$pc-color-dark-comp-grey:#5D7A92;
+$pc-color-red-dark:#be0900;
+$pc-color-red-light:#e1190f;
+$pc-color-mid-green:#24d695;
+$pc-color-dark-green:#13ab74;
+$pc-color-gray-very-light: #dbdbdb;
+$pc-color-reorder-blue: #0275d8;
+$pc-color-border-gray: #cacaca;
+$pc-background-color: #2E2E2E;
+$pc-header-bg-color: #130d0d;
+$pc-color-danger: #721c24;
+$pc-color-success: #155724;
+$pc-font-family: GTWalsheim, "Helvetica Neue", sans-serif;

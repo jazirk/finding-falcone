@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "assets/theme/resource/variable";
+@import "assets/theme/resource/mixins";
+@import "assets/theme/reset";
+@import "assets/theme/fonts/customFonts.css";
+
+html, body {
+  height: 100%;
+  background: $pc-background-color;
+}
+
+body {
+  margin: 0;
+  font-family: GTWalsheim, "Helvetica Neue", sans-serif;
+}

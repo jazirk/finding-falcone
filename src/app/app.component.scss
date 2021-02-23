@@ -1,0 +1,56 @@
+@import "src/assets/theme/resource/variable";
+@import "src/assets/theme/resource/mixins";
+
+header {
+  padding: 2rem;
+  background-color: $pc-header-bg-color;
+  color: $pc-color-white;
+  text-transform: capitalize;
+  font-size: $pc-font-14px;
+  height: 10%;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  @include flex-box(nowrap, center, stretch);
+
+  ul {
+    width: 100%;
+    @include flex-box(nowrap, center, stretch);
+
+    a {
+      cursor: pointer;
+    }
+
+    li:first-of-type {
+      margin-right: auto;
+    }
+
+    h1 {
+      margin: 0rem;
+      cursor: pointer;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    li:nth-of-type(2) {
+      margin-right: 2%;
+    }
+  }
+}
+
+
+footer {
+  padding: 2rem;
+  background-color: $pc-header-bg-color;
+  position: fixed;
+  bottom: 0;
+  height: 10%;
+  width: 100%;
+  text-align: center;
+  z-index: 100;
+  color: $pc-color-white;
+  @include flex-box(nowrap, center, center)
+}

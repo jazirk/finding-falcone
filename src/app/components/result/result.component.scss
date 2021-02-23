@@ -1,0 +1,49 @@
+@import "src/assets/theme/resource/variable";
+@import "src/assets/theme/resource/mixins";
+main {
+
+  margin: 2rem 10%;
+  width: 80%;
+  .result__status {
+    @include flex-box(nowrap, center, center);
+    flex-direction: column;
+    height: 95vh;
+    &-alert-danger {
+      color: $pc-color-danger;
+      background-color: #f8d7da;
+      border-color: #f5c6cb;
+    }
+
+    &-alert-success {
+      color: $pc-color-success;
+      background-color: #d4edda;
+      border-color: #c3e6cb;
+    }
+
+    &-alert {
+      position: relative;
+
+      font-size: 2rem;
+
+      padding: 2rem;
+      margin-bottom: 1rem;
+
+      border: 1px solid transparent;
+      border-radius: .25rem;
+    }
+
+    &-text-center {
+      text-align: center;
+    }
+
+    input[type='button'] {
+      color: $pc-color-white;
+      padding: 1rem;
+      width: 250px;
+      background-color: transparent;
+      border: .1rem solid #444;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+  }
+}
